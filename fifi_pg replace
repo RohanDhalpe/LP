@@ -1,0 +1,72 @@
+#include<iostream>
+using namespace std;
+
+
+void fifo(int arr[],int size,int frame[],int f_size){
+    
+    cout << "          Fifo Page Replacement  " << "\n";
+    
+    int hits = 0;
+    int miss = 0;
+    int ptr  = 0;
+    
+    
+    for( int i=0; i < size ; i++){
+        
+        bool flag = false;
+        
+        for( int j = 0; j < f_size; j++){
+            if(arr[i] == frame[j]){
+                flag = true;
+			break;
+            }
+        }
+        
+        if(flag == true) hits++;
+        
+        else{
+            miss++;
+            
+            frame[ptr] = arr[i];
+            
+            if(ptr == f_size - 1) ptr = 0;
+            else ptr++;
+        }
+        
+        for(int k=0; k < f_size; k++){
+            cout << frame[k] << " ";
+        }
+        cout << "\n";
+    }
+    
+    cout << "\n";
+    cout << "Total number of hits : " << hits << "\n";
+    cout << "Total number of page faults : " << miss << "\n";
+    
+}
+
+
+int main(){
+    
+    int size;
+    cout << "Enter the number of pages : " ;
+    cin >> size;
+    cout << "\n";
+    
+    int arr[size];
+    cout << "Enter the pages : ";
+    for(int i=0;i<size;i++) cin >> arr[i];
+    cout << "\n";
+    
+    int f_size;
+    cout << "Enter the size of frame : " ;
+    cin >> f_size;
+    
+    int frame[f_size];
+    for(int j=0;j<f_size;j++) frame[j] = -1;
+    cout << "\n";
+    
+    
+    fifo(arr,size,frame,f_size);
+    
+}
