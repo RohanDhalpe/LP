@@ -27,6 +27,7 @@ void bestfit(int blocksize[],int m,int processsize[],int n)
     if(bestidx!=-1)
     {
       allocation[i]=bestidx;
+        blocksize[bestidx] =blocksize[bestidx]- processsize[i];
     }
    }
   
