@@ -19,7 +19,7 @@ void fifo(int arr[],int size,int frame[],int f_size){
         else{
             miss++;
             frame[ptr]=arr[i];
-            if(ptr=f_size-1) ptr=0;
+            if(ptr>=f_size-1) ptr=0;
             ptr++;
         }
 
